@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>LISTADO DE LIBROS</title>
+</head>
+<body>
+	<h3>Usuario: <span th:text="${usuario.nombre}"></span> - Password: <span th:text="${usuario.password}"> </span> </h3>
+	 
+	<H1>LISTA EMPRESAS</H1>
+		<table border=1>
+			<thead>
+			<tr><th> IdEmpresa <th> Nombre <th> Telefono <th> Ciudad <th> Direccion <th> Oferta Trabajo <th> Modelo Trabajo <th> Borrado <th> Modificar
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:if="${empresas.empty}">
+				<td colspan="2">No Information Available </td>
+				</tr>
+				<tr th:each="empresa : ${empresas}">
+					<td><span th:text=${empresa.idEmpresa}></span></td>
+					<td><span th:text=${empresa.nombre}></span></td>
+					<td><span th:text=${empresa.telefono}></span></td>
+					<td><span th:text=${empresa.ciudad}></span></td>
+					<td><span th:text=${empresa.direccion}></span></td>
+					<td><span th:text=${empresa.ofertaTrabajo}></span></td>
+					<td><span th:text=${empresa.modeloTrabajo}></span></td>
+					<td><a th:href="@{/borrado/}+${empresa.idEmpresa}">Borrado</a></td>
+					<td><a th:href="@{/modificar/}+${empresa.idEmpresa}">Modificar</a></td>
+				</tr>
+			</tbody>	
+		</table>
+		<form action="/insertar" method="post">
+			<br>IDEMPRESA: <input type="text" name=idEmpresa th:value="${empresa?.idEmpresa}">
+			NOMBRE: <input type="text" name=nombre th:value="${empresa?.nombre}">
+			TELEFONO:	<input type="text" name=telefono th:value="${empresa?.telefono}"><br>
+			CIUDAD: <input type="text" name=ciudad th:value="${empresa?.ciudad}">
+			DIRECCION:	<input type="text" name=direccion th:value="${lempresa?.direccion}">
+			OFERTA: <input type="text" name=ofertaTrabajo th:value="${empresa?.ofertaTrabajo}"><br>
+			MODELO: <input type="text" name=modeloTrabajo th:value="${empresa?.modeloTrabajo}"><br>		
+			<input type=submit name=submit th:value="${boton}">
+		</form>
+</body>
+</html>
